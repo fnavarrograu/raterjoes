@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all products
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new product
+    </h2>
+
+    <form action="/insert_product" method="post">
+      <div>
+        <label for="product_name_box">
+          Product name
+        </label>
+
+        <input type="text" id="product_name_box" name="query_product_name">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price">
+      </div>
+
+      <div>
+        <label for="average_rating_box">
+          Average rating
+        </label>
+
+        <input type="text" id="average_rating_box" name="query_average_rating">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <button>
+        Create product
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Product name
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Average rating
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_products.each do |a_product| %>
+      <tr>
+        <td>
+          <%= a_product.id %>
+        </td>
+
+        <td>
+          <%= a_product.product_name %>
+        </td>
+
+        <td>
+          <%= a_product.description %>
+        </td>
+
+        <td>
+          <%= a_product.price %>
+        </td>
+
+        <td>
+          <%= a_product.average_rating %>
+        </td>
+
+        <td>
+          <%= a_product.image %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_product.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_product.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/products/<%= a_product.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
