@@ -11,12 +11,16 @@
         </a>
       </div>
 
+  <%# if session.fetch(:user_id) == @the_product.poster.id %>
+  
       <div>
         <a href="/delete_product/<%= @the_product.id %>">
           Delete product
         </a>
       </div>
     </div>
+
+    <%# end %>
 
     <dl>
       <dt>
@@ -71,8 +75,16 @@
   </div>
 </div>
 
+<form action="/add_favorite" method="post">
+  <label for="browser_product_id">Product</label>
+  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
+
+      <button>Add to my list</button>
+  </form>
+
 <hr>
 
+  <%# if session.fetch(:user_id) == @the_product.user_id %>
 
 <div>
   <div>
@@ -129,3 +141,31 @@
 </div>
 
 <hr>
+
+  <%# end %>
+
+  
+<h3>Rate this product</h3>
+
+<form action="/insert_rating" method="post">
+  <label for="browser_product_id">Product</label>
+  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
+
+  <label for="browser_rating">Rating</label>
+  <textarea id="browser_rating" name="input_body" placeholder="Enter a rating..."></textarea>
+
+  <button>Add rating</button>
+</form>
+
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment" method="post">
+  <label for="browser_product_id">Product</label>
+  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_comment_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>

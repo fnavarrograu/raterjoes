@@ -10,4 +10,7 @@
 #  user_id    :integer
 #
 class Rating < ApplicationRecord
+
+belongs_to :user
+
 end

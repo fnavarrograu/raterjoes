@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
     the_product.product_name = params.fetch("query_product_name")
     the_product.description = params.fetch("query_description")
     the_product.price = params.fetch("query_price")
-    the_product.average_rating = params.fetch("query_average_rating")
+    #the_product.average_rating = params.fetch("query_average_rating")
     the_product.image = params.fetch("query_image")
 
     if the_product.valid?
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
     the_product.product_name = params.fetch("query_product_name")
     the_product.description = params.fetch("query_description")
     the_product.price = params.fetch("query_price")
-    the_product.average_rating = params.fetch("query_average_rating")
+    #the_product.average_rating = params.fetch("query_average_rating")
     the_product.image = params.fetch("query_image")
 
     if the_product.valid?

@@ -105,4 +105,6 @@ Rails.application.routes.draw do
 
 get("/", { :controller => "application", :action => "homepage"} )
 
+get("/homepage", { :controller => "application", :action => "homepage"} )
+
 end

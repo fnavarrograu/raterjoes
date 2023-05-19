@@ -15,4 +15,10 @@ class User < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
   has_secure_password
+
+  has_many :products
+  has_many :comments
+  has_many :ratings
+  has_many :favorites
+
 end

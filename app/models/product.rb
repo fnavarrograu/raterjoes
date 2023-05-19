@@ -12,4 +12,15 @@
 #  updated_at     :datetime         not null
 #
 class Product < ApplicationRecord
+
+  validates :product_name, :uniqueness => { :case_sensitive => false }
+  validates :product_name, :presence => true
+  validates :price, :presence => true
+  validates :description, :presence => true
+
+belongs_to :user
+
+has_many :comments
+has_many :ratings
+
 end
