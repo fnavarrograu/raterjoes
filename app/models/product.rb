@@ -10,7 +10,8 @@
 #  product_name   :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#
+#  mount_uploader :image, ImageUploader
+
 class Product < ApplicationRecord
 
   validates :product_name, :uniqueness => { :case_sensitive => false }
@@ -22,5 +23,7 @@ belongs_to :user
 
 has_many :comments
 has_many :ratings
+
+mount_uploader :image, ImageUploader
 
 end

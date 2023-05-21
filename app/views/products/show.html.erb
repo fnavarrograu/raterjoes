@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Product #<%= @the_product.id %> details
+        <%= @the_product.product_name %>
     </h1>
 
     <div>
@@ -24,10 +24,10 @@
 
     <dl>
       <dt>
-        Product name
+        Image
       </dt>
       <dd>
-        <%= @the_product.product_name %>
+        <img src="<%= @the_product.image %>" class="img-responsive">
       </dd>
 
       <dt>
@@ -49,13 +49,6 @@
       </dt>
       <dd>
         <%= @the_product.average_rating %>
-      </dd>
-
-      <dt>
-        Image
-      </dt>
-      <dd>
-        <%= @the_product.image %>
       </dd>
 
       <dt>

@@ -14,7 +14,7 @@
       Add a new product
     </h2>
 
-    <form action="/insert_product" method="post">
+    <form action="/insert_product" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div>
         <label for="product_name_box">
           Product name
@@ -52,7 +52,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="file" id="image" name="image" class="form-control">
       </div>
 
       <button>

@@ -1,42 +1,18 @@
 <div>
   <div>
     <h1>
-      List of all favorites
+      <%#= session.fetch(:user).username %>'s List
     </h1>
   </div>
 </div>
 
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new favorite
-    </h2>
-
     <form action="/insert_favorite" method="post">
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
 
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
+        <input type="hidden" id="user_id_box" name="query_user_id">
 
-      <div>
-        <label for="product_id_box">
-          Product
-        </label>
+        <input type="hidden" id="product_id_box" name="query_product_id">
 
-        <input type="text" id="product_id_box" name="query_product_id">
-      </div>
-
-      <button>
-        Create favorite
-      </button>
     </form>
-  </div>
-</div>
 
 <hr>
 <div>
