@@ -35,4 +35,6 @@ def ratings_count
   ratings.count(:rating)
 end
 
+attr_accessor :product_category
+
 end

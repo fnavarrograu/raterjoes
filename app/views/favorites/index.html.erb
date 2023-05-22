@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      My Product List
+      <%= @current_user.username %>'s Product List
     </h1>
   </div>
 </div>
@@ -24,11 +24,11 @@
         </th>
 
         <th>
-          User
+          Product
         </th>
 
         <th>
-          Product
+          Image
         </th>
 
         <th>
@@ -50,12 +50,12 @@
         </td>
 
         <td>
-          <%= a_favorite.user_id %>
+          <%= a_favorite.product.product_name %>
         </td>
 
         <td>
-          <%= a_favorite.product_id %>
-        </td>
+          <img src="<%= a_favorite.product.image %>" class="img-responsive">
+        </td>        
 
         <td>
           <%= time_ago_in_words(a_favorite.created_at) %> ago

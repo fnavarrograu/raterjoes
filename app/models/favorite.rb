@@ -14,4 +14,8 @@ class Favorite < ApplicationRecord
     return User.where({ :id => self.user_id }).at(0)
   end
 
+  def product
+    return Product.where({ :id => self.product_id }).at(0)
+  end
+
 end

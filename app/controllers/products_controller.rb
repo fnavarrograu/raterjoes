@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     the_product = Product.new
     the_product.product_name = params.fetch("query_product_name")
     the_product.description = params.fetch("query_description")
-    the_product.product_category = params.fetch("query_product_category")
+    the_product.product_category = params.fetch("product_category")
     the_product.price = params.fetch("query_price")
     the_product.image = params.fetch(:image)
     the_product.owner_id = session.fetch(:user_id)
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
 
     the_product.product_name = params.fetch("query_product_name")
     the_product.description = params.fetch("query_description")
-    the_product.product_category = params.fetch("query_product_category")
+    the_product.product_category = params.fetch("product_category")
     the_product.price = params.fetch("query_price")
     the_product.image = params.fetch(:image)
     the_product.owner_id = session.fetch(:user_id)
