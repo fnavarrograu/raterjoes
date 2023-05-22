@@ -10,7 +10,8 @@
 #  product_name   :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  mount_uploader :image, ImageUploader
+#  owner_id       :integer
+#
 
 class Product < ApplicationRecord
 

@@ -10,4 +10,8 @@
 #
 class Favorite < ApplicationRecord
 
+  def owner
+    return User.where({ :id => self.user_id }).at(0)
+  end
+
 end

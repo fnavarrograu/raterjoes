@@ -11,7 +11,7 @@
         </a>
       </div>
 
-  <%# if session.fetch(:user_id) == @the_product.poster.id %>
+  <% if session.fetch(:user_id) == @the_product.owner_id %>
   
       <div>
         <a href="/delete_product/<%= @the_product.id %>">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <%# end %>
+    <% end %>
 
     <dl>
       <dt>
@@ -77,7 +77,7 @@
 
 <hr>
 
-  <%# if session.fetch(:user_id) == @the_product.user_id %>
+    <% if session.fetch(:user_id) == @the_product.owner_id %>
 
 <div>
   <div>
@@ -85,7 +85,7 @@
       Edit product
     </h2>
 
-    <form action="/modify_product/<%= @the_product.id %>"  method="post" >
+    <form action="/modify_product/<%= @the_product.id %>"  method="post" class="form-horizontal" enctype="multipart/form-data" >
       <div>
         <label for="product_name_box">
           Product name
@@ -127,7 +127,7 @@
 
 <hr>
 
-  <%# end %>
+  <% end %>
 
   
 <h3>Rate this product</h3>
