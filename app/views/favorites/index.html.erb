@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      <%#= session.fetch(:user).username %>'s List
+      My Product List
     </h1>
   </div>
 </div>
@@ -65,7 +65,7 @@
         </td>
 
         <td>
-          <a href="/favorites/<%= a_favorite.id %>">
+          <a href="/products/<%= a_favorite.product_id %>">
             Show details
           </a>
         </td>

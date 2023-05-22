@@ -111,14 +111,6 @@
       </div>
 
       <div>
-        <label for="average_rating_box">
-          Average rating
-        </label>
-
-        <input type="text" id="average_rating_box" name="query_average_rating" value="<%= @the_product.average_rating %>">
-      </div>
-
-      <div>
         <label for="image_box">
           Image
         </label>
@@ -156,6 +148,14 @@
 
   <button>Add rating</button>
 </form>
+
+<div> 
+Average Rating: 
+
+<%= @the_product.ratings.first %>
+
+
+</div>
 
 <hr>
 
