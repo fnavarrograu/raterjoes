@@ -2,15 +2,16 @@
 #
 # Table name: products
 #
-#  id             :integer          not null, primary key
-#  average_rating :float
-#  description    :string
-#  image          :string
-#  price          :float
-#  product_name   :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  owner_id       :integer
+#  id               :integer          not null, primary key
+#  average_rating   :float
+#  description      :string
+#  image            :string
+#  price            :float
+#  product_category :string
+#  product_name     :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  owner_id         :integer
 #
 
 class Product < ApplicationRecord

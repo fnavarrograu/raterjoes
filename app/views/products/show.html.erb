@@ -38,6 +38,13 @@
       </dd>
 
       <dt>
+        Product Category
+      </dt>
+      <dd>
+        <%= @the_product.product_category %>
+      </dd>      
+
+      <dt>
         Price
       </dt>
       <dd>
@@ -101,6 +108,25 @@
 
         <input type="text" id="description_box" name="query_description" value="<%= @the_product.description %>">
       </div>
+
+      <div>
+        <label for="product_category_box">
+          Product Category
+        </label>
+
+        <select  id="product_category_box" name="query_product_category">
+            <option value="Bakery">Bakery</option>
+            <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
+            <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
+            <option value="From the Freezer">From the Freezer</option>
+            <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
+            <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
+            <option value="For the Pantry">For the Pantry</option>
+            <option value="Snacks & Sweets">Snacks & Sweets</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Everything Else">Everything Else</option>
+        </select>
+      </div>      
 
       <div>
         <label for="price_box">
