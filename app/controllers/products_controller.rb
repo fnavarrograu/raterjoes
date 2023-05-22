@@ -23,11 +23,8 @@ class ProductsController < ApplicationController
     the_product.description = params.fetch("query_description")
     the_product.product_category = params.fetch("query_product_category")
     the_product.price = params.fetch("query_price")
-    #the_product.average_rating = params.fetch("query_average_rating")
     the_product.image = params.fetch(:image)
     the_product.owner_id = session.fetch(:user_id)
-
-    #the_product.average_rating = the_product.ratings.sum.to_i / the_product.ratings.lenght.to_i 
 
     if the_product.valid?
       the_product.save
@@ -45,7 +42,6 @@ class ProductsController < ApplicationController
     the_product.description = params.fetch("query_description")
     the_product.product_category = params.fetch("query_product_category")
     the_product.price = params.fetch("query_price")
-    #the_product.average_rating = params.fetch("query_average_rating")
     the_product.image = params.fetch(:image)
     the_product.owner_id = session.fetch(:user_id)
 

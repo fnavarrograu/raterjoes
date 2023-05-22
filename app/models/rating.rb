@@ -11,7 +11,7 @@
 #
 class Rating < ApplicationRecord
 
-belongs_to :user
+belongs_to :product
 
 def rater
   return User.where({ :id => self.user_id }).at(0)

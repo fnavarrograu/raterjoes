@@ -3,7 +3,6 @@
 # Table name: products
 #
 #  id               :integer          not null, primary key
-#  average_rating   :float
 #  description      :string
 #  image            :string
 #  price            :float
@@ -27,5 +26,13 @@ has_many :comments
 has_many :ratings
 
 mount_uploader :image, ImageUploader
+
+def average_rating
+  ratings.average(:rating)
+end
+
+def ratings_count
+  ratings.count(:rating)
+end
 
 end
