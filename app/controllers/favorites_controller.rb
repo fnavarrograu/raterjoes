@@ -1,8 +1,10 @@
 class FavoritesController < ApplicationController
   def index
-    matching_favorites = Favorite.all
+    matching_favorites = Favorite.includes(:product).all
 
     @list_of_favorites = matching_favorites.order({ :created_at => :desc })
+
+    @total_price = @list_of_favorites.sum { |favorite| favorite.product.price }
 
     render({ :template => "favorites/index.html.erb" })
   end
