@@ -19,15 +19,15 @@ class CommentsController < ApplicationController
 
   def create
     the_comment = Comment.new
-    the_comment.user_id = params.fetch("query_user_id")
-    the_comment.product_id = params.fetch("query_product_id")
-    the_comment.body = params.fetch("query_body")
+    the_comment.user_id = session.fetch(:user_id)
+    the_comment.product_id = params.fetch("input_comment_id")
+    the_comment.body = params.fetch("input_body")
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments", { :notice => "Comment created successfully." })
+      redirect_to("/products/#{the_comment.product_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/comments", { :alert => the_comment.errors.full_messages.to_sentence })
+      redirect_to("/products/#{the_comment.product_id}", { :alert => the_comment.errors.full_messages.to_sentence })
     end
   end
 
@@ -35,15 +35,15 @@ class CommentsController < ApplicationController
     the_id = params.fetch("path_id")
     the_comment = Comment.where({ :id => the_id }).at(0)
 
-    the_comment.user_id = params.fetch("query_user_id")
-    the_comment.product_id = params.fetch("query_product_id")
-    the_comment.body = params.fetch("query_body")
+    the_comment.user_id = session.fetch(:user_id)
+    the_comment.product_id = params.fetch("input_comment_id")
+    the_comment.body = params.fetch("input_body")
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments/#{the_comment.id}", { :notice => "Comment updated successfully."} )
+      redirect_to("/products/#{the_comment.product_id}", { :notice => "Comment updated successfully."} )
     else
-      redirect_to("/comments/#{the_comment.id}", { :alert => the_comment.errors.full_messages.to_sentence })
+      redirect_to("/products/#{the_comment.product_id}", { :alert => the_comment.errors.full_messages.to_sentence })
     end
   end
 

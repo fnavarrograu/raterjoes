@@ -40,14 +40,6 @@
       </div>
 
       <div>
-        <label for="average_rating_box">
-          Average rating
-        </label>
-
-        <input type="text" id="average_rating_box" name="query_average_rating">
-      </div>
-
-      <div>
         <label for="image_box">
           Image
         </label>
@@ -126,7 +118,7 @@
         </td>
 
         <td>
-          <%= a_product.image %>
+          <img src="<%= a_product.image %>" class="img-responsive">
         </td>
 
         <td>

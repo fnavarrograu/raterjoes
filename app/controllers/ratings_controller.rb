@@ -19,15 +19,15 @@ class RatingsController < ApplicationController
 
   def create
     the_rating = Rating.new
-    the_rating.user_id = params.fetch("query_user_id")
-    the_rating.product_id = params.fetch("query_product_id")
-    the_rating.rating = params.fetch("query_rating")
+    the_rating.user_id = session.fetch(:user_id)
+    the_rating.product_id = params.fetch("input_rating_id")
+    the_rating.rating = params.fetch(:rating)
 
     if the_rating.valid?
       the_rating.save
-      redirect_to("/ratings", { :notice => "Rating created successfully." })
+      redirect_to("/products/#{the_rating.product_id}", { :notice => "Rating created successfully." })
     else
-      redirect_to("/ratings", { :alert => the_rating.errors.full_messages.to_sentence })
+      redirect_to("/products/#{the_rating.product_id}", { :alert => the_rating.errors.full_messages.to_sentence })
     end
   end
 
@@ -35,15 +35,15 @@ class RatingsController < ApplicationController
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
-    the_rating.user_id = params.fetch("query_user_id")
-    the_rating.product_id = params.fetch("query_product_id")
-    the_rating.rating = params.fetch("query_rating")
+    the_rating.user_id = session.fetch(:user_id)
+    the_rating.product_id = params.fetch("input_rating_id")
+    the_rating.rating = params.fetch(:rating)
 
     if the_rating.valid?
       the_rating.save
-      redirect_to("/ratings/#{the_rating.id}", { :notice => "Rating updated successfully."} )
+      redirect_to("/products/#{the_rating.product_id}", { :notice => "Rating updated successfully."} )
     else
-      redirect_to("/ratings/#{the_rating.id}", { :alert => the_rating.errors.full_messages.to_sentence })
+      redirect_to("/products/#{the_rating.product_id}", { :alert => the_rating.errors.full_messages.to_sentence })
     end
   end
 

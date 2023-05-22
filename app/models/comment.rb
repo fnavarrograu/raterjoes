@@ -13,4 +13,8 @@ class Comment < ApplicationRecord
 
   belongs_to :user
 
+  def commenter
+    return User.where({ :id => self.user_id }).at(0)
+  end
+
 end
