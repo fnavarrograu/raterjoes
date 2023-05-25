@@ -14,64 +14,53 @@
   <% if session.fetch(:user_id) == @the_product.owner_id %>
   
       <div>
-        <a href="/delete_product/<%= @the_product.id %>">
-          Delete product
-        </a>
-      </div>
+  <button class="delete-button" onclick="window.location.href='/delete_product/<%= @the_product.id %>'">
+    Delete product
+  </button>
+    </div>
+
     </div>
 
     <% end %>
 
-    <dl>
-      <dt>
-        Image
-      </dt>
-      <dd>
-        <img src="<%= @the_product.image %>" class="img-responsive">
-      </dd>
+<div class="product-details">
+  <div class="product-info">
+    <table>
+      <tr>
+        <th>Description</th>
+        <td><%= @the_product.description %></td>
+      </tr>
+      <tr>
+        <th>Product Category</th>
+        <td><%= @the_product.product_category %></td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td><%= @the_product.price %></td>
+      </tr>
+      <tr>
+        <th>Average rating</th>
+        <td><%= @the_product.average_rating %></td>
+      </tr>
+      <tr>
+        <th>Number of Ratings</th>
+        <td><%= @the_product.ratings_count %></td>
+      </tr>
+      <tr>
+        <th>Created at</th>
+        <td><%= time_ago_in_words(@the_product.created_at) %> ago</td>
+      </tr>
+      <tr>
+        <th>Updated at</th>
+        <td><%= time_ago_in_words(@the_product.updated_at) %> ago</td>
+      </tr>
+    </table>
+  </div>
 
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_product.description %>
-      </dd>
-
-      <dt>
-        Product Category
-      </dt>
-      <dd>
-        <%= @the_product.product_category %>
-      </dd>      
-
-      <dt>
-        Price
-      </dt>
-      <dd>
-        <%= @the_product.price %>
-      </dd>
-
-      <dt>
-        Average rating
-      </dt>
-      <dd>
-        <%= @the_product.average_rating %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_product.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_product.updated_at) %> ago
-      </dd>
-    </dl>
+  <div class="product-image">
+    <dd>
+      <img src="<%= @the_product.image %>" class="img-responsive">
+    </dd>
   </div>
 </div>
 
@@ -79,72 +68,189 @@
   <label for="browser_product_id">Product</label>
   <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
 
-      <button>Add to my list</button>
+      <button class="cool-button2">Add to my list</button>
   </form>
 
 <hr>
 
     <% if session.fetch(:user_id) == @the_product.owner_id %>
 
+<style>
+  .form-horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .form-horizontal div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-horizontal label {
+    margin-bottom: 5px;
+  }
+
+  .cool-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .cool-button:hover {
+    background-color: #45a049;
+  }
+
+  .cool-button2 {
+    background-color: #8A2BE2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .cool-button2:hover {
+    background-color: #6A1E9C;
+  }  
+
+  .delete-button {
+    background-color: #DC3545;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .delete-button:hover {
+    background-color: #C82333;
+  }
+
+    .product-details {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+  }
+
+  .product-info {
+    flex-basis: 50%;
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  .product-image {
+    flex-basis: 50%;
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+</style>
+
 <div>
   <div>
     <h2>
-      Edit product
+      Update product
     </h2>
 
-    <form action="/modify_product/<%= @the_product.id %>"  method="post" class="form-horizontal" enctype="multipart/form-data" >
+    <form action="/insert_product" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div>
         <label for="product_name_box">
           Product name
         </label>
-
-        <input type="text" id="product_name_box" name="query_product_name" value="<%= @the_product.product_name %>">
+        <input type="text" id="product_name_box" name="query_product_name">
       </div>
 
       <div>
         <label for="description_box">
           Description
         </label>
-
-        <input type="text" id="description_box" name="query_description" value="<%= @the_product.description %>">
+        <input type="text" id="description_box" name="query_description">
       </div>
 
       <div>
-        <label for="product_category_box">
+        <label for="product_category">
           Product Category
         </label>
-
-        <select input type="text" id="product_category_box" name="query_product_category">
-            <option value="Bakery">Bakery</option>
-            <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
-            <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
-            <option value="From the Freezer">From the Freezer</option>
-            <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
-            <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
-            <option value="For the Pantry">For the Pantry</option>
-            <option value="Snacks & Sweets">Snacks & Sweets</option>
-            <option value="Beverages">Beverages</option>
-            <option value="Everything Else">Everything Else</option>
+        <select id="product_category" name="product_category">
+          <option value="Bakery">Bakery</option>
+          <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
+          <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
+          <option value="From the Freezer">From the Freezer</option>
+          <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
+          <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
+          <option value="For the Pantry">For the Pantry</option>
+          <option value="Snacks & Sweets">Snacks & Sweets</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Everything Else">Everything Else</option>
         </select>
-      </div>      
+      </div>
 
       <div>
         <label for="price_box">
           Price
         </label>
-
-        <input type="text" id="price_box" name="query_price" value="<%= @the_product.price %>">
+        <input type="text" id="price_box" name="query_price">
       </div>
 
       <div>
         <label for="image_box">
           Image
         </label>
-
         <input type="file" id="image" name="image" class="form-control">
       </div>
 
-      <button>
+      <button class="cool-button">
         Update product
       </button>
     </form>
@@ -172,7 +278,7 @@
     <option value="5">5</option>
   </select>
 
-  <button>Add rating</button>
+  <button class="cool-button2">Add rating</button>
 </form>
 
 <div> 
@@ -200,7 +306,7 @@ Number of Ratings:
   <label for="browser_comment">Comment</label>
   <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
 
-  <button>Add comment</button>
+  <button class="cool-button2">Add comment</button>
 </form>
 
 <h3>List of all Comments</h3>

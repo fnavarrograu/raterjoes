@@ -1,12 +1,38 @@
-<div>
-  <div>
-    <h1>
-      List of all products
-    </h1>
-  </div>
-</div>
+<style>
+  .form-horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
 
-<hr>
+  .form-horizontal div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-horizontal label {
+    margin-bottom: 5px;
+  }
+
+  .cool-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .cool-button:hover {
+    background-color: #45a049;
+  }
+</style>
 
 <div>
   <div>
@@ -19,7 +45,6 @@
         <label for="product_name_box">
           Product name
         </label>
-
         <input type="text" id="product_name_box" name="query_product_name">
       </div>
 
@@ -27,7 +52,6 @@
         <label for="description_box">
           Description
         </label>
-
         <input type="text" id="description_box" name="query_description">
       </div>
 
@@ -35,27 +59,24 @@
         <label for="product_category">
           Product Category
         </label>
-
-            <select input type="text" id="product_category" name="product_category" value="Submit">
-            <option value="Bakery">Bakery</option>
-            <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
-            <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
-            <option value="From the Freezer">From the Freezer</option>
-            <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
-            <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
-            <option value="For the Pantry">For the Pantry</option>
-            <option value="Snacks & Sweets">Snacks & Sweets</option>
-            <option value="Beverages">Beverages</option>
-            <option value="Everything Else">Everything Else</option>
+        <select id="product_category" name="product_category">
+          <option value="Bakery">Bakery</option>
+          <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
+          <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
+          <option value="From the Freezer">From the Freezer</option>
+          <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
+          <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
+          <option value="For the Pantry">For the Pantry</option>
+          <option value="Snacks & Sweets">Snacks & Sweets</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Everything Else">Everything Else</option>
         </select>
-
-      </div>      
+      </div>
 
       <div>
         <label for="price_box">
           Price
         </label>
-
         <input type="text" id="price_box" name="query_price">
       </div>
 
@@ -63,11 +84,10 @@
         <label for="image_box">
           Image
         </label>
-
         <input type="file" id="image" name="image" class="form-control">
       </div>
 
-      <button>
+      <button class="cool-button">
         Create product
       </button>
     </form>
@@ -75,6 +95,17 @@
 </div>
 
 <hr>
+
+<div>
+  <div>
+    <h1>
+      List of all products
+    </h1>
+  </div>
+</div>
+
+<hr>
+
 <div>
   <div>
     <table border="1">
