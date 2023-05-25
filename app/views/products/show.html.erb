@@ -1,29 +1,28 @@
 <div>
   <div>
-    <h1>
+
+<div class="button-container">
+  <div>
+    <a href="/products">
+      Go back to products
+    </a>
+  </div>
+
+  <% if session.fetch(:user_id) == @the_product.owner_id %>
+    <div>
+      <button class="delete-button" onclick="window.location.href='/delete_product/<%= @the_product.id %>'">
+        Delete product
+      </button>
+    </div>
+  <% end %>
+</div>
+
+    <h1 class="product-title">
         <%= @the_product.product_name %>
     </h1>
 
-    <div>
-      <div>
-        <a href="/products">
-          Go back
-        </a>
-      </div>
-
-  <% if session.fetch(:user_id) == @the_product.owner_id %>
-  
-      <div>
-  <button class="delete-button" onclick="window.location.href='/delete_product/<%= @the_product.id %>'">
-    Delete product
-  </button>
-    </div>
-
-    </div>
-
-    <% end %>
-
 <div class="product-details">
+
   <div class="product-info">
     <table>
       <tr>
@@ -73,7 +72,7 @@
 
 <hr>
 
-    <% if session.fetch(:user_id) == @the_product.owner_id %>
+
 
 <style>
   .form-horizontal {
@@ -140,6 +139,7 @@
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 5px;
+    align: right;
   }
 
   .delete-button:hover {
@@ -165,7 +165,7 @@
     background-color: #f5f5f5;
     font-weight: bold;
     padding: 10px;
-    text-align: left;
+    text-align: center;
   }
 
   td {
@@ -195,9 +195,55 @@
     border-radius: 8px;
   }
 
+  .product-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .button-container a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: lightgrey;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .button-container a:hover {
+    background-color: orange;
+    color: white;
+  }
+
+  .button-container button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: lightgrey;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
 </style>
 
+    
+
 <div>
+
+<% if session.fetch(:user_id) == @the_product.owner_id %>
+
   <div>
     <h2>
       Update product
@@ -255,13 +301,13 @@
       </button>
     </form>
   </div>
+
+  <% end %>
 </div>
 
 <hr>
 
-  <% end %>
-
-  
+ 
 <h3>Rate this product</h3>
 
 <form action="/insert_rating" method="post">
