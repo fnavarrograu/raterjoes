@@ -14,12 +14,83 @@
         Delete product
       </button>
     </div>
+
   <% end %>
 </div>
 
     <h1 class="product-title">
         <%= @the_product.product_name %>
     </h1>
+
+<hr>
+
+<div>
+
+<% if session.fetch(:user_id) == @the_product.owner_id %>
+
+  <div>
+    <h2 class="subtitlex">
+      Update Product
+    </h2>
+
+    <form action="/insert_product" method="post" class="form-horizontal" enctype="multipart/form-data">
+      <div>
+        <label for="product_name_box" class="underline-text">
+          Product name
+        </label>
+        <input type="text" id="product_name_box" name="query_product_name">
+      </div>
+
+      <div>
+        <label for="description_box" class="underline-text">
+          Description
+        </label>
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="product_category" class="underline-text">
+          Product Category
+        </label>
+        <select id="product_category" name="product_category">
+          <option value="Bakery">Bakery</option>
+          <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
+          <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
+          <option value="From the Freezer">From the Freezer</option>
+          <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
+          <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
+          <option value="For the Pantry">For the Pantry</option>
+          <option value="Snacks & Sweets">Snacks & Sweets</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Everything Else">Everything Else</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="price_box" class="underline-text">
+          Price
+        </label>
+        <input type="text" id="price_box" name="query_price">
+      </div>
+
+      <div>
+        <label for="image_box" class="underline-text">
+          Image
+        </label>
+        <input type="file" id="image" name="image" class="form-control">
+      </div>
+
+      <button class="cool-button">
+        Update product
+      </button>
+    </form>
+  </div>
+
+  <hr>
+
+  <% end %>
+</div>
+
 
 <div class="product-details">
 
@@ -63,16 +134,108 @@
   </div>
 </div>
 
-<form action="/add_favorite" method="post">
-  <label for="browser_product_id">Product</label>
-  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
 
-      <button class="cool-button2">Add to my list</button>
+
+  <div class="button-container2">
+  <form action="/insert_rating" method="post">
+    <label for="browser_product_id">Product</label>
+    <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
+
+    <label for="browser_rating">Rating</label>
+
+    <select name="rating" id="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+    <button class="cool-button2">Add rating</button>
   </form>
+
+  <form action="/add_favorite" method="post">
+
+    <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
+
+    <button class="cool-button2">Add to my list</button>
+  </form>
+</div>
+
+
+
+
+
 
 <hr>
 
+<h3 class="subtitlex">List of all Comments</h3>
 
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          Comment ID
+        </th>
+
+        <th>
+          Username
+        </th>
+
+        <th>
+          Comment
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+      </tr>
+
+      <% @the_product.comments.each do |a_comment| %>
+      <tr>
+        <td>
+          <%= a_comment.id %>
+        </td>
+
+        <td>
+          <%= a_comment.commenter.username %>
+        </td>
+
+        <td>
+          <%= a_comment.body %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_comment.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_comment.updated_at) %> ago
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>    
+
+<h3 class="subtitlex">Add a new comment</h3>
+
+<form action="/insert_comment" method="post">
+  <label for="browser_product_id">Product</label>
+  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_comment_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+
+  <button class="cool-button2">Add comment</button>
+</form>
 
 <style>
   .form-horizontal {
@@ -80,6 +243,8 @@
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 10px;
+    text-align:center;
+    font-weight: bold;
   }
 
   .form-horizontal div {
@@ -106,7 +271,7 @@
   }
 
   .cool-button:hover {
-    background-color: #45a049;
+    background-color: #goldenrod;
   }
 
   .cool-button2 {
@@ -236,177 +401,30 @@
     border-radius: 5px;
   }
 
+ .button-container2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .titlex {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Cool Font", Arial, sans-serif;
+  color: #333; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+.subtitlex {
+  text-align: left;
+  font-size: 1.5rem;
+  font-family: "Cool Font", Arial, sans-serif;
+  color: #666; 
+  text-decoration: underline;}
+
+    .underline-text {
+  text-decoration: underline;
+}
+
 </style>
-
-    
-
-<div>
-
-<% if session.fetch(:user_id) == @the_product.owner_id %>
-
-  <div>
-    <h2>
-      Update product
-    </h2>
-
-    <form action="/insert_product" method="post" class="form-horizontal" enctype="multipart/form-data">
-      <div>
-        <label for="product_name_box">
-          Product name
-        </label>
-        <input type="text" id="product_name_box" name="query_product_name">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-        <input type="text" id="description_box" name="query_description">
-      </div>
-
-      <div>
-        <label for="product_category">
-          Product Category
-        </label>
-        <select id="product_category" name="product_category">
-          <option value="Bakery">Bakery</option>
-          <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
-          <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
-          <option value="From the Freezer">From the Freezer</option>
-          <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
-          <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
-          <option value="For the Pantry">For the Pantry</option>
-          <option value="Snacks & Sweets">Snacks & Sweets</option>
-          <option value="Beverages">Beverages</option>
-          <option value="Everything Else">Everything Else</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="price_box">
-          Price
-        </label>
-        <input type="text" id="price_box" name="query_price">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-        <input type="file" id="image" name="image" class="form-control">
-      </div>
-
-      <button class="cool-button">
-        Update product
-      </button>
-    </form>
-  </div>
-
-  <% end %>
-</div>
-
-<hr>
-
- 
-<h3>Rate this product</h3>
-
-<form action="/insert_rating" method="post">
-  <label for="browser_product_id">Product</label>
-  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
-
-  <label for="browser_rating">Rating</label>
-
-    <select name="rating" id="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-
-  <button class="cool-button2">Add rating</button>
-</form>
-
-<div> 
-Average Rating: 
-
-<%= @the_product.average_rating %>
-
-</div>
-
-<div> 
-Number of Ratings: 
-
-<%= @the_product.ratings_count %>
-
-</div>
-
-<hr>
-
-<h3>Add a new comment</h3>
-
-<form action="/insert_comment" method="post">
-  <label for="browser_product_id">Product</label>
-  <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_comment_id">
-
-  <label for="browser_comment">Comment</label>
-  <textarea id="browser_comment" name="input_body" placeholder="Enter a comment..."></textarea>
-
-  <button class="cool-button2">Add comment</button>
-</form>
-
-<h3>List of all Comments</h3>
-
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          Comment ID
-        </th>
-
-        <th>
-          Username
-        </th>
-
-        <th>
-          Comment
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-      </tr>
-
-      <% @the_product.comments.each do |a_comment| %>
-      <tr>
-        <td>
-          <%= a_comment.id %>
-        </td>
-
-        <td>
-          <%= a_comment.commenter.username %>
-        </td>
-
-        <td>
-          <%= a_comment.body %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_comment.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_comment.updated_at) %> ago
-        </td>
-
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

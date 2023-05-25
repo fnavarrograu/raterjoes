@@ -1,9 +1,11 @@
 <style>
-  .form-horizontal {
+ .form-horizontal {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 10px;
+    text-align:center;
+    font-weight: bold;
   }
 
   .form-horizontal div {
@@ -32,31 +34,77 @@
   .cool-button:hover {
     background-color: #45a049;
   }
+
+.titlex {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Cool Font", Arial, sans-serif;
+  color: #333; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+.subtitlex {
+  text-align: left;
+  font-size: 1.5rem;
+  font-family: "Cool Font", Arial, sans-serif;
+  color: #666;
+    text-decoration: underline;
+     }
+
+.centered-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center; /* Center align table content */
+  }
+
+  .centered-table th,
+  .centered-table td {
+    padding: 10px;
+  }
+
+  .centered-table th {
+    background-color: #da291c; /* Set background color to red */
+    color: white; /* Set text color to white */
+    font-weight: bold;
+  }
+
+  .centered-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .centered-table tr:hover {
+    background-color: #e6e6e6;
+  }
+
+  .underline-text {
+  text-decoration: underline;
+}
+
 </style>
 
 <div>
   <div>
-    <h2>
-      Add a new product
+    <h2 class="subtitlex">
+      Add a New Product
     </h2>
 
     <form action="/insert_product" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div>
-        <label for="product_name_box">
+        <label for="product_name_box" class="underline-text">
           Product name
         </label>
         <input type="text" id="product_name_box" name="query_product_name">
       </div>
 
       <div>
-        <label for="description_box">
+        <label for="description_box" class="underline-text">
           Description
         </label>
         <input type="text" id="description_box" name="query_description">
       </div>
 
       <div>
-        <label for="product_category">
+        <label for="product_category" class="underline-text">
           Product Category
         </label>
         <select id="product_category" name="product_category">
@@ -74,14 +122,14 @@
       </div>
 
       <div>
-        <label for="price_box">
+        <label for="price_box" class="underline-text">
           Price
         </label>
         <input type="text" id="price_box" name="query_price">
       </div>
 
       <div>
-        <label for="image_box">
+        <label for="image_box" class="underline-text">
           Image
         </label>
         <input type="file" id="image" name="image" class="form-control">
@@ -98,8 +146,8 @@
 
 <div>
   <div>
-    <h1>
-      List of all products
+    <h1 class="titlex">
+      List of All Products
     </h1>
   </div>
 </div>
@@ -108,7 +156,7 @@
 
 <div>
   <div>
-    <table border="1">
+    <table class="centered-table">
       <tr>
         <th>
           ID

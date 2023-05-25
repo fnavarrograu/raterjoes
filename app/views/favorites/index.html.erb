@@ -1,6 +1,6 @@
 <div>
   <div>
-    <h1>
+    <h1 class="titlex">
       <%= @current_user.username %>'s Product List
     </h1>
   </div>
@@ -14,59 +14,73 @@
 
     </form>
 
-<div> Total Price = <%= @total_price %> </div>
+
 
 <hr>
 
+<style>
+  .centered-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center; /* Center align table content */
+  }
+
+  .centered-table th,
+  .centered-table td {
+    padding: 10px;
+  }
+
+  .centered-table th {
+    background-color: #da291c; /* Set background color to red */
+    color: white; /* Set text color to white */
+    font-weight: bold;
+  }
+
+  .centered-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .centered-table tr:hover {
+    background-color: #e6e6e6;
+  }
+
+.titlex {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Cool Font", Arial, sans-serif;
+  color: #333; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+.subtitlex {
+  text-align: right;
+  font-size: 1.5rem;
+  font-family: "Cool Font", Arial, sans-serif;
+  color: #666; 
+  decoration: underline;
+  }
+
+</style>
+
 <div>
   <div>
-    <table border="1">
+    <table class="centered-table">
       <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Product
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Image</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+        <th></th>
       </tr>
 
       <% @list_of_favorites.each do |a_favorite| %>
       <tr>
-        <td>
-          <%= a_favorite.id %>
-        </td>
-
-        <td>
-          <%= a_favorite.product.product_name %>
-        </td>
-
-        <td>
-          <img src="<%= a_favorite.product.image %>" class="img-responsive">
-        </td>        
-
-        <td>
-          <%= time_ago_in_words(a_favorite.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_favorite.updated_at) %> ago
-        </td>
-
+        <td><%= a_favorite.id %></td>
+        <td><%= a_favorite.product.product_name %></td>
+        <td><img src="<%= a_favorite.product.image %>" class="img-responsive"></td>
+        <td><%= time_ago_in_words(a_favorite.created_at) %> ago</td>
+        <td><%= time_ago_in_words(a_favorite.updated_at) %> ago</td>
         <td>
           <a href="/products/<%= a_favorite.product_id %>">
             Show details
@@ -79,3 +93,5 @@
 </div>
 
 <hr>
+
+<div class="subtitlex"> Total Price = <%= @total_price %> </div>
