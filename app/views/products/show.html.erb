@@ -10,9 +10,9 @@
 
   <% if session.fetch(:user_id) == @the_product.owner_id %>
     <div>
-      <button class="delete-button" onclick="window.location.href='/delete_product/<%= @the_product.id %>'">
-        Delete product
-      </button>
+      <form action="/delete_product/<%= @the_product.id %>" method="get" onsubmit="return confirm('Are you sure you want to delete this product?')">
+      <button type="submit" class="delete-button">Delete product</button>
+      </form>
     </div>
 
   <% end %>
@@ -46,24 +46,6 @@
           Description
         </label>
         <input type="text" id="description_box" name="query_description">
-      </div>
-
-      <div>
-        <label for="product_category" class="underline-text">
-          Product Category
-        </label>
-        <select id="product_category" name="product_category">
-          <option value="Bakery">Bakery</option>
-          <option value="Cheese, Dairy, and Eggs">Cheese, Dairy, and Eggs</option>
-          <option value="Dips, Sauces & Dressings">Dips, Sauces & Dressings</option>
-          <option value="From the Freezer">From the Freezer</option>
-          <option value="Fresh Fruits & Veggies">Fresh Fruits & Veggies</option>
-          <option value="Meat, Seafood, and Plant-based products">Meat, Seafood, and Plant-based products</option>
-          <option value="For the Pantry">For the Pantry</option>
-          <option value="Snacks & Sweets">Snacks & Sweets</option>
-          <option value="Beverages">Beverages</option>
-          <option value="Everything Else">Everything Else</option>
-        </select>
       </div>
 
       <div>
@@ -101,10 +83,6 @@
         <td><%= @the_product.description %></td>
       </tr>
       <tr>
-        <th>Product Category</th>
-        <td><%= @the_product.product_category %></td>
-      </tr>
-      <tr>
         <th>Price</th>
         <td><%= @the_product.price %></td>
       </tr>
@@ -115,6 +93,10 @@
       <tr>
         <th>Number of Ratings</th>
         <td><%= @the_product.ratings_count %></td>
+      </tr>
+      <tr>
+        <th>Product Poster</th>
+        <td><%= @the_product.owner_id %></td>
       </tr>
       <tr>
         <th>Created at</th>
