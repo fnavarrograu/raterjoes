@@ -33,7 +33,7 @@
       Update Product
     </h2>
 
-    <form action="/modify_product" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form action="/modify_product/<%= @the_product.id %>" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div>
         <label for="product_name_box" class="underline-text">
           Product name
