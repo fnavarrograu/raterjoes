@@ -4,7 +4,11 @@ class FavoritesController < ApplicationController
 
     @list_of_favorites = matching_favorites.order({ :created_at => :desc })
 
-    @total_price = @list_of_favorites.sum { |favorite| favorite.product.price }
+    if @list_of_favorites.present?
+      @total_price = @list_of_favorites.sum { |favorite| favorite.product.present? ? favorite.product.price : 0 }
+    else
+      @total_price = 0
+    end
 
     render({ :template => "favorites/index.html.erb" })
   end

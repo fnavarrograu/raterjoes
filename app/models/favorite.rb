@@ -13,12 +13,14 @@ class Favorite < ApplicationRecord
 belongs_to :product
 belongs_to :user
 
+validates :product, presence: true
+
   def owner
     return User.where({ :id => self.user_id }).at(0)
   end
 
   def product
-    return Product.where({ :id => self.product_id }).at(0)
+    Product.find_by(id: self.product_id)
   end
 
   def price

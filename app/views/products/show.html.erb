@@ -24,6 +24,18 @@
 
 <hr>
 
+<% if notice.present? %>
+  <div class="notice">
+    <%= notice %>
+  </div>
+<% end %>
+
+<% if alert.present? %>
+  <div class="alert">
+    <%= alert %>
+  </div>
+<% end %>
+
 <div>
 
 <% if session.fetch(:user_id) == @the_product.owner_id %>
@@ -93,10 +105,6 @@
       <tr>
         <th>Number of Ratings</th>
         <td><%= @the_product.ratings_count %></td>
-      </tr>
-      <tr>
-        <th>Product Poster</th>
-        <td><%= @the_product.owner_id %></td>
       </tr>
       <tr>
         <th>Created at</th>
@@ -245,6 +253,8 @@
     flex-wrap: nowrap;
     gap: 10px;
     text-align:center;
+        align-items: center;
+  justify-content: center;
     font-weight: bold;
   }
 
@@ -340,6 +350,9 @@
 
   .product-info {
     flex-basis: 50%;
+    align-items: center;
+  justify-content: center;
+  display: flex;
   }
 
   dl {
@@ -427,5 +440,23 @@
     .underline-text {
   text-decoration: underline;
             }
+
+
+    .notice {
+      padding: 20px;
+      background-color: #dff0d8;
+      color: #3c763d;
+      border: 1px solid #d6e9c6;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .alert {
+      padding: 20px;
+      background-color: #f2dede;
+      color: #a94442;
+      border: 1px solid #ebccd1;
+      border-radius: 5px;
+      margin-bottom: 20px;}
 
 </style>

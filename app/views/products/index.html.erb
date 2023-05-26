@@ -80,7 +80,36 @@
   text-decoration: underline;
 }
 
+    .notice {
+      padding: 20px;
+      background-color: #dff0d8;
+      color: #3c763d;
+      border: 1px solid #d6e9c6;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .alert {
+      padding: 20px;
+      background-color: #f2dede;
+      color: #a94442;
+      border: 1px solid #ebccd1;
+      border-radius: 5px;
+      margin-bottom: 20px;}
+
 </style>
+
+<% if notice.present? %>
+  <div class="notice">
+    <%= notice %>
+  </div>
+<% end %>
+
+<% if alert.present? %>
+  <div class="alert">
+    <%= alert %>
+  </div>
+<% end %>
 
 <div>
   <div>
