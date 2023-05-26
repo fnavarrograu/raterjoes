@@ -138,7 +138,7 @@
   <% if session[:user_id].present? %>
     <% rating = @the_product.ratings.find_by(user_id: session[:user_id]) %>
     <% if rating %>
-      <form action="/modify_rating" method="post">
+      <form action="/modify_rating/<%= rating.id %>" method="post">
         <label for="browser_product_id">Product</label>
         <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
         <label for="browser_rating">Rating</label>
