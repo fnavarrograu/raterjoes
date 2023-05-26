@@ -33,7 +33,7 @@
       Update Product
     </h2>
 
-    <form action="/insert_product" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <form action="/modify_product" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div>
         <label for="product_name_box" class="underline-text">
           Product name
@@ -134,38 +134,57 @@
   </div>
 </div>
 
+<div class="button-container2">
+  <% if session[:user_id].present? %>
+    <% rating = @the_product.ratings.find_by(user_id: session[:user_id]) %>
+    <% if rating %>
+      <form action="/modify_rating" method="post">
+        <label for="browser_product_id">Product</label>
+        <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
+        <label for="browser_rating">Rating</label>
+        <select name="rating" id="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button class="cool-button2">Update Rating</button>
+      </form>
+    <% else %>
+      <form action="/insert_rating" method="post">
+        <label for="browser_product_id">Product</label>
+        <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
+        <label for="browser_rating">Rating</label>
+        <select name="rating" id="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button class="cool-button2">Add Rating</button>
+      </form>
+    <% end %>
+  <% end %>
 
 
-  <div class="button-container2">
-  <form action="/insert_rating" method="post">
-    <label for="browser_product_id">Product</label>
-    <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="input_rating_id">
+<% if session[:user_id].present? %>
+  <% favorite = @the_product.favorites.find_by(user_id: session[:user_id]) %>
+  <% if favorite %>
+    <form action="/delete_favorite/<%= favorite.id %>" method="post">
+      <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
+      <button class="cool-button2">Remove from my list</button>
+    </form>
+  <% else %>
+    <form action="/add_favorite" method="post">
+      <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
+      <button class="cool-button2">Add to my list</button>
+    </form>
+  <% end %>
+<% end %>
 
-    <label for="browser_rating">Rating</label>
-
-    <select name="rating" id="rating">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-
-    <button class="cool-button2">Add rating</button>
-  </form>
-
-  <form action="/add_favorite" method="post">
-
-    <input id="browser_product_id" type="hidden" value="<%= @the_product.id %>" name="query_product_id">
-
-    <button class="cool-button2">Add to my list</button>
-  </form>
 </div>
-
-
-
-
-
 
 <hr>
 
@@ -425,6 +444,6 @@
 
     .underline-text {
   text-decoration: underline;
-}
+            }
 
 </style>

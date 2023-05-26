@@ -11,6 +11,7 @@
 class Favorite < ApplicationRecord
 
 belongs_to :product
+belongs_to :user
 
   def owner
     return User.where({ :id => self.user_id }).at(0)

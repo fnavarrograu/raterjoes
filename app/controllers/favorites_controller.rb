@@ -48,11 +48,22 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
-    the_favorite = Favorite.where({ :id => the_id }).at(0)
 
-    the_favorite.destroy
+    favorite = Favorite.find_by(id: params[:favorite_id])
 
-    redirect_to("/favorites", { :notice => "Favorite deleted successfully."} )
+    if favorite
+      favorite.destroy
+      redirect_to("/favorites", { :notice => "Favorite deleted successfully." })
+    else
+      redirect_to("/favorites", { :alert => "Favorite not found." })
+    end
+
+    #the_id = params.fetch("path_id")
+    #the_favorite = Favorite.find_by(id: the_id)
+    #the_favorite = Favorite.where({ :id => the_id }).at(0)
+
+    #the_favorite.destroy
+
+    #redirect_to("/favorites", { :notice => "Favorite deleted successfully."} )
   end
 end
