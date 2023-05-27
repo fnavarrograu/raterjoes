@@ -95,11 +95,11 @@
         <td><%= @the_product.description %></td>
       </tr>
       <tr>
-        <th>Price</th>
+        <th>Price ($)</th>
         <td><%= @the_product.price %></td>
       </tr>
       <tr>
-        <th>Average rating</th>
+        <th>Average Rating</th>
         <td><%= @the_product.average_rating %></td>
       </tr>
       <tr>
@@ -366,6 +366,9 @@
   .product-image {
     flex-basis: 50%;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
 
   img {
